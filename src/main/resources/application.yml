@@ -1,0 +1,25 @@
+server:
+  port: 8090
+
+kafka:
+  consumer:
+    auto:
+      commit.interval: 100
+      offset.reset: latest
+    concurrency: 10
+    enable.auto.commit: true
+    group.id: boot-kafka-demo
+    servers: 118.31.54.101:9201,118.31.54.101:9202,118.31.54.101:9203
+    session.timeout: 6000
+  producer:
+    retries: 0
+    servers: 118.31.54.101:9201,118.31.54.101:9202,118.31.54.101:9203
+
+app:
+  topic: test
+
+logging:
+  level:
+    root: info
+    org.springframework.web: INFO
+    com.memorynotfound: DEBUG
