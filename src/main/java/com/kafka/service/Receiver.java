@@ -42,7 +42,7 @@ public class Receiver {
     public void offsetListen(ConsumerRecord<?, ?> record, Acknowledgment ack, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
         logger.info("Thread: name: " + Thread.currentThread().getName() + "   offsetListen: " + Thread.currentThread().toString());
 
-        ack.acknowledge(); // 主动提交offset
+        ack.acknowledge(); // 主动提交offset. 不调用的话，会出现zk该"消费组"的协同者，会一直没有更新offset值，最直接的现象是，每次重启应用，会重新消费offset
 
         printRecord(record, topic);
     }

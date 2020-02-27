@@ -39,21 +39,17 @@ public class KafkaConsumerConfig {
 
         propsMap.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         propsMap.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 100);
+
         propsMap.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 6000);
         propsMap.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
 
-        System.out.println("KafkaConsumerConfig ############" + propsMap.toString() + "############");
         return propsMap;
     }
 
-    private ConsumerFactory<String, String> consumerFactory() {
-        return new DefaultKafkaConsumerFactory<>(consumerConfigs());
-    }
-
     @Bean(name = "defaultContainerFactory")
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory());
+    public KafkaListenerContainerFactory kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(new DefaultKafkaConsumerFactory<>(consumerConfigs()));
         factory.setConcurrency(concurrency);
         factory.getContainerProperties().setPollTimeout(1500);
 
