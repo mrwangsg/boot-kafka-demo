@@ -3,14 +3,10 @@ server:
 
 kafka:
   consumer:
-    auto:
-      commit.interval: 100
-      offset.reset: latest
-    concurrency: 10
-    enable.auto.commit: true
+    concurrency: 5
     group.id: boot-kafka-demo
+    group.id.offset: boot-kafka-demo-offset
     servers: 118.31.54.101:9201,118.31.54.101:9202,118.31.54.101:9203
-    session.timeout: 6000
   producer:
     retries: 0
     servers: 118.31.54.101:9201,118.31.54.101:9202,118.31.54.101:9203

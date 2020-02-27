@@ -1,4 +1,4 @@
-package com.kafka.Service;
+package com.kafka.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

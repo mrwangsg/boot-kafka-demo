@@ -1,6 +1,6 @@
 package com.kafka.controller;
 
-import com.kafka.Service.Sender;
+import com.kafka.service.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
